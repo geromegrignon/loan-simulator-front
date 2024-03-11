@@ -14,7 +14,7 @@ import {MatDividerModule} from '@angular/material/divider';
   imports: [MatCardModule, MatButtonModule, MatDividerModule, MatIconModule,
     MatRadioModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
