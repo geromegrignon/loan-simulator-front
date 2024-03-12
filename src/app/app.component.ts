@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './component/header/header.component';
-import { ThemeService } from './themeservice';
+import { ThemeService } from './service/themeservice';
 
 @Component({
   selector: 'app-root',
