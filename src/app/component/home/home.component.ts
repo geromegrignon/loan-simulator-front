@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
@@ -9,41 +9,25 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import { Department } from '../../model/department';
-import { Subscription } from 'rxjs';
+import {Observable, Subscription, tap} from 'rxjs';
 import { DepartmentService } from '../../service/department.service';
 import { ActivatedRoute } from '@angular/router';
-import { NgForOf } from '@angular/common';
+import {AsyncPipe, NgForOf} from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [NgForOf, MatCardModule, MatButtonModule, MatDividerModule, MatIconModule,
-    MatRadioModule, MatFormFieldModule, MatInputModule, MatSelectModule,MatListModule],
+    MatRadioModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatListModule, AsyncPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  public departments : Department[] = [];
-  public currentCategoryId: number = 1;
-  private subscriptions: Subscription[] = [];
-  
-  constructor( private departmentService : DepartmentService,
-                private route : ActivatedRoute) { }
+  public currentCategoryId: string = '01';
+  public departments$: Observable<Department[]> = this.departmentService.getDepartments();
 
-ngOnInit(): void {
-  this.route.paramMap.subscribe(() => {
-    this.listeDepartments();
-  });
-  }
 
-  private listeDepartments() : void {
-    this.departmentService.getDepartmentsById(this.currentCategoryId)
-    .subscribe( 
-      data => { this.departments = data })
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  constructor(private departmentService: DepartmentService) {
   }
 }

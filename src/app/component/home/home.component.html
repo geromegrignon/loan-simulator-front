@@ -9,7 +9,7 @@
     <mat-form-field>
       <mat-label>Département</mat-label>
       <mat-select>
-        @for (department of departments; track department.id) {
+        @for (department of departments$ | async; track department.id) {
           <mat-option>{{department.id}} - {{department.name}}</mat-option>
         }
         @empty {
