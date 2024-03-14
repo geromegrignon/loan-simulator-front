@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DepartmentService {
-  private departmentUrl = './assets/mock/department.json';
+  private departmentUrl = '/assets/department.json';
   private department$ = new BehaviorSubject<Department[]>([]);
 
   constructor(private http : HttpClient) { }
@@ -35,6 +35,6 @@ export class DepartmentService {
         map((departments : Department[]) =>
           departments.filter((d: Department) => d.id  === id)
           )
-      );
+      )
   }
 }
