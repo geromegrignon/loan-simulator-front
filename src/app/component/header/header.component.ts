@@ -3,7 +3,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { ThemeService } from '../../themeservice';
+import { ThemeService } from '../../service/themeservice';
 
 @Component({
   selector: 'app-header',
